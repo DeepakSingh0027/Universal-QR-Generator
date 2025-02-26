@@ -1,23 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "./App.css";
+import RotatingText from "./reactBitsLib/RotatingText";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="heading">
+      <RotatingText
+        texts={[
+          "TEXT",
+          "URL",
+          "WIFI",
+          "EMAIL",
+          "SMS",
+          "MERCHANT PAYMENT",
+          "PERSONAL PAYMENT",
+        ]}
+        mainClassName="my-class"
+        staggerFrom={"last"}
+        initial={{ y: "100%" }}
+        animate={{ y: 0 }}
+        exit={{ y: "-120%" }}
+        staggerDuration={0.025}
+        splitLevelClassName="my-class-split"
+        transition={{ type: "spring", damping: 30, stiffness: 400 }}
+        rotationInterval={2000}
+      />
+      <p className="heading-text-2">QR GENERATOR</p>
     </div>
   );
 }
