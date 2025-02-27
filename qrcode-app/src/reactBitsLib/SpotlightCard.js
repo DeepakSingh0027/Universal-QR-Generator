@@ -5,6 +5,7 @@ const SpotlightCard = ({
   children,
   className = "",
   spotlightColor = "rgba(255, 255, 255, 0.25)",
+  onClick, // Accept onClick as a prop
 }) => {
   const divRef = useRef(null);
 
@@ -22,7 +23,9 @@ const SpotlightCard = ({
     <div
       ref={divRef}
       onMouseMove={handleMouseMove}
+      onClick={onClick} // Pass the onClick prop here
       className={`card-spotlight ${className}`}
+      style={{ cursor: "pointer" }} // Ensure it's clickable
     >
       {children}
     </div>

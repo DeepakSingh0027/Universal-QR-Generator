@@ -17,13 +17,20 @@
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-size: 30px;
   z-index: 1;
-  color: rgb(178, 172, 165);
+  cursor: default;
+  color: rgb(47, 46, 45);
 }
 
 .main-body {
+  text-decoration: none;
+  padding-top: 70px;
+  margin-left: 80px;
+  margin-right: 80px;
   z-index: 1;
-  justify-content: center;
   display: flex;
+  justify-content: center;
+  flex-wrap: wrap; /* Allows items to wrap onto new lines */
+  gap: 80px; /* Adjust gap value as needed */
 }
 
 .fullscreen-container {
