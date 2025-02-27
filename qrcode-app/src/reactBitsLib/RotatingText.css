@@ -5,14 +5,15 @@
 
 .my-class {
   /* Base (mobile-first) styles */
+  box-shadow: 2px;
   padding-top: 2px;
   padding-bottom: 2px;
   padding-left: 0.5rem; /* px-2 */
   padding-right: 0.5rem; /* px-2 */
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-size: 30px;
-  background-color: rgba(106, 0, 255, 0.533); /* bg-cyan-300 */
-  color: rgb(255, 255, 255); /* text-black */
+  background: radial-gradient(circle, #4a4a4e, #2b2d2e); /* bg-cyan-300 */
+  color: rgb(225, 224, 201); /* text-black */
   overflow: hidden; /* overflow-hidden */
   justify-content: center; /* justify-center (ensure parent is flex container) */
   border-radius: 0.5rem; /* rounded-lg */
@@ -39,6 +40,8 @@
 }
 
 .text-rotate-word {
+  padding-left: 2px;
+  padding-right: 2px;
   display: inline-flex;
 }
 
