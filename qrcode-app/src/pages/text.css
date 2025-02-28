@@ -1,0 +1,21 @@
+.Heading-text {
+  z-index: 1;
+  margin-left: 50px;
+  margin-right: 50px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  padding-top: 60px;
+  font-size: 30px;
+  display: flex;
+  align-items: center; /* Aligns items vertically */
+  justify-content: space-between; /* Home to left, QR Code Generator in center */
+  position: relative;
+  color: #af0f0f;
+  text-shadow: 2px;
+}
+
+.Heading-text p {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%); /* Centers text */
+  margin: 0; /* Remove default margin */
+}
