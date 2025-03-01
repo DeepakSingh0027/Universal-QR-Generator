@@ -10,9 +10,10 @@ const WifiQR = () => {
   const [qrValue, setQrValue] = useState("");
   const qrRef = useRef(null);
   const [password, setPass] = useState("");
-  const [encrypt, setEncrypt] = useState("WPA");
-  const [hidden, setHidden] = useState("false");
+  const [encrypt, setEncrypt] = useState("");
+  const [hidden, setHidden] = useState("");
   const [message, setMessage] = useState("");
+  const [hide, setHide] = useState(false);
 
   const handleGenerate = () => {
     if (!ssid) {
@@ -23,8 +24,21 @@ const WifiQR = () => {
       setMessage("Please enter Password field.");
       return;
     }
+    if (!encrypt) {
+      setEncrypt("WPA");
+    }
+    if (!hidden) {
+      setHidden("false");
+    }
     setQrValue(`WIFI:S:${ssid};T:${encrypt};P:${password};H:${hidden};;`);
     setMessage("");
+  };
+
+  const handleNavigate = (e) => {
+    const selectedRoute = e.target.value;
+    if (selectedRoute) {
+      navigate(`/${selectedRoute}`);
+    }
   };
 
   const handleDownload = () => {
@@ -57,6 +71,16 @@ const WifiQR = () => {
         <p style={{ cursor: "default", color: "#000000" }}>
           WIFI &#8594; QR CODE GENERATOR
         </p>
+        <select onChange={handleNavigate} className="qr-input-heading">
+          <option value="">SWITCH TO</option>
+          <option value="text">TEXT</option>
+          <option value="url">URL</option>
+          {hide && <option value="wifi">WIFI</option>}
+          <option value="email">EMAIL</option>
+          <option value="sms">SMS</option>
+          <option value="merchant-payment">MERCHANT</option>
+          <option value="personal-payment">PERSONAL</option>
+        </select>
       </div>
       <div className="qr-container">
         <p style={{ fontFamily: "sans-serif" }}>SSID</p>
@@ -83,7 +107,7 @@ const WifiQR = () => {
           onChange={(e) => setEncrypt(e.target.value)}
           className="qr-input"
         >
-          <option value="WPA">Select an Encryption</option>
+          <option value="">Select an Encryption</option>
           <option value="WPA">WPA</option>
           <option value="WPA2">WPA2</option>
           <option value="WPA3">WPA3</option>
@@ -97,7 +121,7 @@ const WifiQR = () => {
           onChange={(e) => setHidden(e.target.value)}
           className="qr-input"
         >
-          <option value="false">Select if Hidden</option>
+          <option value="">Select if Hidden</option>
           <option value="true">YES</option>
           <option value="false">NO</option>
         </select>

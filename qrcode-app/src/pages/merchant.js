@@ -17,6 +17,14 @@ const MerchantQR = () => {
   const [message, setMessage] = useState(
     "Note: Make Sure all the Fields should be correct."
   );
+  const [hide, setHide] = useState(false);
+
+  const handleNavigate = (e) => {
+    const selectedRoute = e.target.value;
+    if (selectedRoute) {
+      navigate(`/${selectedRoute}`);
+    }
+  };
 
   const handleGenerate = () => {
     if (!upiID) {
@@ -85,6 +93,16 @@ const MerchantQR = () => {
         <p style={{ cursor: "default", color: "#000000" }}>
           MERCHANT UPI &#8594; QR CODE GENERATOR
         </p>
+        <select onChange={handleNavigate} className="qr-input-heading">
+          <option value="">SWITCH TO</option>
+          <option value="text">TEXT</option>
+          <option value="url">URL</option>
+          <option value="wifi">WIFI</option>
+          <option value="email">EMAIL</option>
+          <option value="sms">SMS</option>
+          {hide && <option value="merchant-payment">MERCHANT</option>}
+          <option value="personal-payment">PERSONAL</option>
+        </select>
       </div>
       <div className="qr-container">
         <p style={{ fontFamily: "sans-serif" }}>UPI ID</p>

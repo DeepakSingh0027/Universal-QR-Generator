@@ -11,6 +11,14 @@ const SmsQR = () => {
   const qrRef = useRef(null);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
+  const [hide, setHide] = useState(false);
+
+  const handleNavigate = (e) => {
+    const selectedRoute = e.target.value;
+    if (selectedRoute) {
+      navigate(`/${selectedRoute}`);
+    }
+  };
 
   const handleGenerate = () => {
     if (!phoneno) {
@@ -59,6 +67,16 @@ const SmsQR = () => {
         <p style={{ cursor: "default", color: "#000000" }}>
           SMS &#8594; QR CODE GENERATOR
         </p>
+        <select onChange={handleNavigate} className="qr-input-heading">
+          <option value="">SWITCH TO</option>
+          <option value="text">TEXT</option>
+          <option value="url">URL</option>
+          <option value="wifi">WIFI</option>
+          <option value="email">EMAIL</option>
+          {hide && <option value="sms">SMS</option>}
+          <option value="merchant-payment">MERCHANT</option>
+          <option value="personal-payment">PERSONAL</option>
+        </select>
       </div>
       <div className="qr-container">
         <p style={{ fontFamily: "sans-serif" }}>PHONE NUMBER</p>
