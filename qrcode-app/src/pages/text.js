@@ -45,47 +45,39 @@ const TextQR = () => {
           TEXT &#8594; QR CODE GENERATOR
         </p>
       </div>
-      <input
-        type="text"
-        placeholder="Enter Your text"
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        style={{ width: "300px", padding: "8px" }}
-      />
-      <br />
-      <br />
-      <button
-        onClick={handleGenerate}
-        style={{ padding: "10px 20px", marginBottom: "20px" }}
-      >
-        Generate QR Code
-      </button>
-      <br />
-      <div
-        ref={qrRef}
-        style={{
-          padding: "20px",
-
-          display: "inline-block",
-        }}
-      >
+      <div className="qr-container">
+        <p style={{ fontFamily: "sans-serif" }}>TEXT</p>
+        <input
+          type="text"
+          className="qr-input"
+          placeholder="Enter Your Text"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+        />
+        <br />
+        <button onClick={handleGenerate} className="glow-on-hover">
+          Generate QR Code
+        </button>
+        <br />
         {qrValue && (
-          <QRCodeCanvas
-            value={qrValue}
-            size={300} // Increased size for better readability
-            bgColor="#ffffff" // White background
-            fgColor="#000000" // Black foreground
-            level="H" // High error correction (H = 30% of code can be damaged and still work)
-            includeMargin={true} // Adds padding to improve scan accuracy
-          />
+          <div ref={qrRef} className="qr-box">
+            <QRCodeCanvas
+              value={qrValue}
+              size={300}
+              bgColor="#ffffff"
+              fgColor="#000000"
+              level="H"
+              includeMargin={true}
+            />
+          </div>
+        )}
+        <br />
+        {qrValue && (
+          <button onClick={handleDownload} className="glow-on-hover">
+            Download QR Code
+          </button>
         )}
       </div>
-      <br />
-      {qrValue && (
-        <button onClick={handleDownload} style={{ padding: "10px 20px" }}>
-          Download QR Code
-        </button>
-      )}
     </div>
   );
 };

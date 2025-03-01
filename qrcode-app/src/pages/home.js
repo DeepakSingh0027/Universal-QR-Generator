@@ -44,7 +44,7 @@ const Home = () => {
           spotlightColor="rgba(255, 255, 255, 0.48)"
           onClick={() => navigate("/text")} // Now this works!
         >
-          TEXT QR
+          TEXT
         </SpotlightCard>
 
         <SpotlightCard
