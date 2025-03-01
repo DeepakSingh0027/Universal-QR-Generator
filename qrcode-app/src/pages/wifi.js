@@ -12,9 +12,19 @@ const WifiQR = () => {
   const [password, setPass] = useState("");
   const [encrypt, setEncrypt] = useState("WPA");
   const [hidden, setHidden] = useState("false");
+  const [message, setMessage] = useState("");
 
   const handleGenerate = () => {
+    if (!ssid) {
+      setMessage("Please enter the ssid.");
+      return;
+    }
+    if (!password) {
+      setMessage("Please enter Password field.");
+      return;
+    }
     setQrValue(`WIFI:S:${ssid};T:${encrypt};P:${password};H:${hidden};;`);
+    setMessage("");
   };
 
   const handleDownload = () => {
@@ -97,6 +107,7 @@ const WifiQR = () => {
           generate qr code.
         </p>
         <br />
+        <p style={{ fontFamily: "sans-serif" }}>{message}</p>
         <button onClick={handleGenerate} className="glow-on-hover">
           Generate QR Code
         </button>

@@ -10,9 +10,23 @@ const SmsQR = () => {
   const [qrValue, setQrValue] = useState("");
   const qrRef = useRef(null);
   const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
 
   const handleGenerate = () => {
+    if (!phoneno) {
+      setError("Please enter Phone Number.");
+      return;
+    }
+    if (phoneno.length != 10) {
+      setError("Invalid Phone Number.");
+      return;
+    }
+    if (!message) {
+      setError("Please enter Message");
+      return;
+    }
     setQrValue(`smsto:${phoneno}:${message}`);
+    setError("");
   };
 
   const handleDownload = () => {
@@ -64,7 +78,7 @@ const SmsQR = () => {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
-
+        <p style={{ fontFamily: "sans-serif" }}>{error}</p>
         <br />
         <button onClick={handleGenerate} className="glow-on-hover">
           Generate QR Code

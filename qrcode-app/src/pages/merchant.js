@@ -19,10 +19,37 @@ const MerchantQR = () => {
   );
 
   const handleGenerate = () => {
+    if (!upiID) {
+      setMessage("Please enter UPI ID.");
+      return;
+    }
+    if (!name) {
+      setMessage("Please enter reciever's Name.");
+      return;
+    }
+    if (!merchantCode) {
+      setMessage("Please enter merchant Code.");
+      return;
+    }
+    if (!orderId) {
+      setMessage("Please enter Order ID.");
+      return;
+    }
+    if (!transcationId) {
+      setMessage("Please enter transcation ID.");
+      return;
+    }
+    const upiPattern = /^[a-zA-Z0-9.\-_]+@[a-zA-Z0-9]+$/; // Matches typical UPI ID format
+
+    if (!upiPattern.test(upiID)) {
+      setMessage("Please enter valid UPI ID.");
+      return;
+    }
     if (amount > 0) {
       setQrValue(
         `upi://pay?pa=${upiID}&pn=${name}&mc=${merchantCode}&tid=${transcationId}&tr=${orderId}&tn=Order Payment&am=${amount}&cu=INR`
       );
+      setMessage("");
     } else {
       setMessage("Invalid Amount!");
     }

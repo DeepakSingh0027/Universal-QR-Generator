@@ -17,10 +17,25 @@ const PersonalQR = () => {
   );
 
   const handleGenerate = () => {
+    if (!upiID) {
+      setMessage("Please enter UPI ID.");
+      return;
+    }
+    if (!name) {
+      setMessage("Please enter reciever's Name.");
+      return;
+    }
+    const upiPattern = /^[a-zA-Z0-9.\-_]+@[a-zA-Z0-9]+$/; // Matches typical UPI ID format
+
+    if (!upiPattern.test(upiID)) {
+      setMessage("Please enter valid UPI ID.");
+      return;
+    }
     if (amount > 0) {
       setQrValue(
         `upi://pay?pa=${upiID}&pn=${name}&tn=${note}&cu=INR&am=${amount}`
       );
+      setMessage("");
     } else {
       setMessage("Invalid Amount!");
     }

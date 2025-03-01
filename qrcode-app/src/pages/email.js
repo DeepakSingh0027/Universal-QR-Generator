@@ -11,9 +11,31 @@ const EmailQR = () => {
   const qrRef = useRef(null);
   const [subject, setSubject] = useState("");
   const [body, setBody] = useState("");
+  const [message, setMessage] = useState("");
 
   const handleGenerate = () => {
+    if (!mailto) {
+      setMessage("Please enter email Id.");
+      return;
+    }
+    if (!subject) {
+      setMessage("Please enter subject.");
+      return;
+    }
+    if (!body) {
+      setMessage("Please enter body of Subject.");
+      return;
+    }
+    if (
+      mailto.indexOf("@") === -1 ||
+      mailto.indexOf(".") === -1 ||
+      mailto.indexOf("@") > mailto.lastIndexOf(".")
+    ) {
+      setMessage("Invalid Email.");
+      return;
+    }
     setQrValue(`mailto:${mailto}?subject=${subject}&body=${body}`);
+    setMessage("");
   };
 
   const handleDownload = () => {
@@ -76,6 +98,7 @@ const EmailQR = () => {
         />
 
         <br />
+        <p style={{ fontFamily: "sans-serif" }}>{message}</p>
         <button onClick={handleGenerate} className="glow-on-hover">
           Generate QR Code
         </button>

@@ -9,9 +9,15 @@ const TextQR = () => {
   const [text, setText] = useState("");
   const [qrValue, setQrValue] = useState("");
   const qrRef = useRef(null);
+  const [message, setMessage] = useState("");
 
   const handleGenerate = () => {
+    if (!text) {
+      setMessage("Please Enter the Text.");
+      return;
+    }
     setQrValue(text);
+    setMessage("");
   };
 
   const handleDownload = () => {
@@ -54,6 +60,8 @@ const TextQR = () => {
           value={text}
           onChange={(e) => setText(e.target.value)}
         />
+        <br />
+        <p style={{ fontFamily: "sans-serif" }}>{message}</p>
         <br />
         <button onClick={handleGenerate} className="glow-on-hover">
           Generate QR Code

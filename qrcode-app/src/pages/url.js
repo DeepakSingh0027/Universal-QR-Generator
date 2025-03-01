@@ -9,13 +9,19 @@ const UrlQR = () => {
   const [text, setText] = useState("");
   const [qrValue, setQrValue] = useState("");
   const qrRef = useRef(null);
+  const [message, setMessage] = useState("");
 
   const handleGenerate = () => {
+    if (!text) {
+      setMessage("Please Enter the URL");
+      return;
+    }
     if (text.startsWith("https://") || text.startsWith("http://")) {
       setQrValue(text);
     } else {
       setQrValue(`https://${text}`);
     }
+    setMessage("");
   };
 
   const handleDownload = () => {
@@ -59,6 +65,7 @@ const UrlQR = () => {
           onChange={(e) => setText(e.target.value)}
         />
         <br />
+        <p style={{ fontFamily: "sans-serif" }}>{message}</p>
         <button onClick={handleGenerate} className="glow-on-hover">
           Generate QR Code
         </button>
